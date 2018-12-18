@@ -24,12 +24,12 @@ public class QueryStudent {
 			List<Student> students=session.createQuery("from Student").getResultList();
 			//displayStudents(students);
 			//query students: lastName=Walker
-			//students=session.createQuery("from Student s where s.lastName='Walker'").getResultList();
+			students=session.createQuery("from Student s where s.lastName='Walker'").getResultList();
 			//students=session.createQuery("from Student s where s.lastName='Doe' OR s.firstName='Daffi'").getResultList();
 			//display the students
 			//System.out.println("Students who have last name of Doe or First Name od Daffi");
-			System.out.println("Students who have email LIKE walker");
-			students=session.createQuery("from Student s where s.email LIKE '%walker%' ").getResultList();
+			//System.out.println("Students who have email LIKE walker");
+			//students=session.createQuery("from Student s where s.email LIKE '%walker%' ").getResultList();
 			displayStudents(students);
 			//commit transaction
 			session.getTransaction().commit();
