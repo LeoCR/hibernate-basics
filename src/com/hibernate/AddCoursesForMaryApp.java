@@ -4,31 +4,44 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.entity.Course;
+import com.entity.Instructor;
+import com.entity.InstructorDetail;
+import com.entity.Review;
 import com.entity.Student;
 
-public class CreateStudent {
+public class AddCoursesForMaryApp {
 	public static void main(String[] args) {
 		//create session factory
 		SessionFactory factory=new Configuration()
 				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Instructor.class)
+				.addAnnotatedClass(Course.class)
 				.addAnnotatedClass(Student.class)
+				.addAnnotatedClass(InstructorDetail.class)
+				.addAnnotatedClass(Review.class)
 				.buildSessionFactory();
 		//create a session
 		Session session=factory.getCurrentSession();
 		try {
-			//use the sesion object to save Java Object
-			System.out.println("Creating a new Student Object");
-			//create a student object
-			Student student= new Student("Paul","Walker","paulwalker@gmail.com");
 			//start a transaction
 			session.beginTransaction();
-			//save the student object
-			session.save(student);
+			//get the pacman course from db
+			int courseId=10;
+			Course tempCourse=session.get(Course.class,courseId);
+			//delete the course
+			System.out.println("Deleting course: "+tempCourse);
+			session.delete(tempCourse);
 			//commit transaction
 			session.getTransaction().commit();
 			System.out.println("Done!");
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.getStackTrace();
+		}
+		finally {
+			session.close();
+			factory.close();
 		}
 	}
 
