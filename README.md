@@ -1,0 +1,2 @@
+# hibernate-basics
+Hibernate + Mysql
