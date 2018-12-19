@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 public class TestJdbc {
 
 	public static void main(String[] args) {
-		String jdbcUrl="jdbc:mysql://localhost:3306/hb_student_tracker?useSSL=false&serverTimezone=UTC";
-		String user="hbstudent";
-		String pass="hbstudent";
+		String jdbcUrl="jdbc:mysql://localhost:3306/hb-one-to-many?useSSL=false&serverTimezone=UTC";
+		String user="root";
+		String pass="79461313";
 		try {
 			Connection conn=DriverManager.getConnection(jdbcUrl, user, pass);
 			System.out.println("Connecting to Database"+jdbcUrl);
